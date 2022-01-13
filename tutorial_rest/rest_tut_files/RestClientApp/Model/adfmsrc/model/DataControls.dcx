@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataControlConfigs xmlns="http://xmlns.oracle.com/adfm/configuration" version="12.1.3.10.47" id="DataControls"
+                    Package="model">
+  <AdapterDataControl id="DepartmentRestDC" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adf.model.adapter.rest.RestURLDCDefinition" SupportsTransactions="false"
+                      SupportsSortCollection="false" SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="false" Definition="model.DepartmentRestDC"
+                      BeanClass="model.DepartmentRestDC" xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <Source>
+      <Definitions>
+        <Definition xmlns="http://xmlns.oracle.com/adfm/adapter/rest/xml" ConnectionName="DepartmentRestDC" Source="/"
+                    HttpMethod="GET" id="getAllDepartments" MethodRef="XSD"
+                    SchemaLocation="file:/C:/JDeveloper/mywork/tutorial_rest/rest_tut_files/RestClientApp/Model/xsd/DepartmentsList.xsd"
+                    ensureKeyAttribute="true" dcStructureVersion="2" RootElement="departmentList"/>
+      </Definitions>
+    </Source>
+  </AdapterDataControl>
+  <AdapterDataControl id="EmployeeRestDC" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adf.model.adapter.rest.RestURLDCDefinition" SupportsTransactions="false"
+                      SupportsSortCollection="false" SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="false" Definition="model.EmployeeRestDC"
+                      BeanClass="model.EmployeeRestDC" xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <Source>
+      <Definitions>
+        <Definition xmlns="http://xmlns.oracle.com/adfm/adapter/rest/xml" ConnectionName="EmployeeRestDC"
+                    Source="/##employeeId##" HttpMethod="DELETE" id="removeEmployee" MethodRef="XSD"
+                    ensureKeyAttribute="true" dcStructureVersion="2">
+          <Parameters>
+            <Parameter Name="employeeId" Value="100"/>
+          </Parameters>
+        </Definition>
+        <Definition xmlns="http://xmlns.oracle.com/adfm/adapter/rest/xml" ConnectionName="EmployeeRestDC" Source="/"
+                    HttpMethod="POST" id="updateEmployee" MethodRef="XSD"
+                    InputSchemaLocation="file:/C:/JDeveloper/mywork/tutorial_rest/rest_tut_files/RestClientApp/Model/xsd/Employee.xsd"
+                    ensureKeyAttribute="true" dcStructureVersion="2"/>
+        <Definition xmlns="http://xmlns.oracle.com/adfm/adapter/rest/xml" ConnectionName="EmployeeRestDC"
+                    Source="/##departmentId##" HttpMethod="GET" id="getEmployeesByDepartment" MethodRef="XSD"
+                    SchemaLocation="file:/C:/JDeveloper/mywork/tutorial_rest/rest_tut_files/RestClientApp/Model/xsd/EmployeesList.xsd"
+                    ensureKeyAttribute="true" dcStructureVersion="2" RootElement="employeeList">
+          <Parameters>
+            <Parameter Name="departmentId" Value="60"/>
+          </Parameters>
+        </Definition>
+      </Definitions>
+    </Source>
+  </AdapterDataControl>
+</DataControlConfigs>

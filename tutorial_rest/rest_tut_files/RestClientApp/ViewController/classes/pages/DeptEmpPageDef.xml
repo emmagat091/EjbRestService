@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.47" id="DeptEmpPageDef" Package="pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <methodIterator Binds="getAllDepartments.result" DataControl="DepartmentRestDC" RangeSize="25"
+                    BeanClass="model.DepartmentRestDC.getAllDepartments_Data_departmentList"
+                    id="getAllDepartmentsIterator"/>
+    <accessorIterator MasterBinding="getAllDepartmentsIterator" Binds="alldepartments" RangeSize="25"
+                      DataControl="DepartmentRestDC"
+                      BeanClass="model.DepartmentRestDC.getAllDepartments_Data_alldepartments"
+                      id="alldepartmentsIterator"/>
+    <methodIterator Binds="getEmployeesByDepartment.result" DataControl="EmployeeRestDC" RangeSize="25"
+                    BeanClass="model.EmployeeRestDC.getEmployeesByDepartment_Data_employeeList"
+                    id="getEmployeesByDepartmentIterator"/>
+    <accessorIterator MasterBinding="getEmployeesByDepartmentIterator" Binds="allemployees" RangeSize="25"
+                      DataControl="EmployeeRestDC"
+                      BeanClass="model.EmployeeRestDC.getEmployeesByDepartment_Data_allemployees"
+                      id="allemployeesIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="getAllDepartments" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getAllDepartments"
+                  IsViewObjectMethod="false" DataControl="DepartmentRestDC" InstanceName="data.DepartmentRestDC"
+                  ReturnName="data.DepartmentRestDC.methodResults.getAllDepartments_DepartmentRestDC_getAllDepartments_result"/>
+    <attributeValues IterBinding="alldepartmentsIterator" id="departmentId">
+      <AttrNames>
+        <Item Value="departmentId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="alldepartmentsIterator" id="departmentName">
+      <AttrNames>
+        <Item Value="departmentName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="alldepartmentsIterator" id="locationId">
+      <AttrNames>
+        <Item Value="locationId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="alldepartmentsIterator" id="managerId">
+      <AttrNames>
+        <Item Value="managerId"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="alldepartmentsIterator" id="First" RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="alldepartmentsIterator" id="Previous" RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="alldepartmentsIterator" id="Next" RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="alldepartmentsIterator" id="Last" RequiresUpdateModel="true" Action="last"/>
+    <methodAction id="getEmployeesByDepartment" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getEmployeesByDepartment" IsViewObjectMethod="false" DataControl="EmployeeRestDC"
+                  InstanceName="data.EmployeeRestDC"
+                  ReturnName="data.EmployeeRestDC.methodResults.getEmployeesByDepartment_EmployeeRestDC_getEmployeesByDepartment_result">
+      <NamedData NDName="departmentId" NDValue="#{bindings.departmentId.inputValue}" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="allemployeesIterator" id="allemployees">
+      <nodeDefinition DefName="model.EmployeeRestDC.getEmployeesByDepartment_Data_allemployees" Name="allemployees0">
+        <AttrNames>
+          <Item Value="employeeId"/>
+          <Item Value="firstName"/>
+          <Item Value="lastName"/>
+          <Item Value="hireDate"/>
+          <Item Value="email"/>
+          <Item Value="phoneNumber"/>
+          <Item Value="jobId"/>
+          <Item Value="salary"/>
+          <Item Value="commissionPct"/>
+          <Item Value="managerId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

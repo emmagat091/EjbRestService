@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.1.3.10.47" id="DataBindings"
+             SeparateXMLFiles="false" Package="view" ClientType="Generic">
+  <pageMap>
+    <page path="/pages/DeptEmp.jsf" usageId="view_DeptEmpPageDef"/>
+    <page path="PageFlow#getEmployeesByDepartment" usageId="view_adfc_config___getEmployeesByDepartmentPageDef"/>
+    <page path="/pages/EditEmployees.jsf" usageId="view_EditEmployeesPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_DeptEmpPageDef" path="pages.DeptEmpPageDef"/>
+    <page id="view_adfc_config___getEmployeesByDepartmentPageDef"
+          path="view.pageDefs.adfc_config___getEmployeesByDepartmentPageDef"/>
+    <page id="view_EditEmployeesPageDef" path="pages.EditEmployeesPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="EmployeeRestDC" path="model.EmployeeRestDC"/>
+    <dc id="DepartmentRestDC" path="model.DepartmentRestDC"/>
+  </dataControlUsages>
+</Application>
